@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
+  const [randomData, setRandomData] = useState({});
+
+  useEffect(() => {
+    axios
+    .get("https://www.boredapi.com/api/activity")
+    .then((res) => setRandomData(res.data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>BORED APP</h1>
+      <h2>Bored?</h2>
+      <h3>Discover which activity you could do, randomly by refreshing the web page</h3>
+    <div className='random'>
+         {randomData && Object.entries(randomData).map(([key, random]) => (
+          <li key={key}>{random}</li>
+        ))}
+        </div>
     </div>
   );
-}
+};
 
 export default App;

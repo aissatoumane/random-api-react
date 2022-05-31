@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+/**************************************************************/
+* {
+  background: rgb(193, 138, 193);
+}
+
+.random {
+  display: flex;
+  flex-direction: row;
+}
